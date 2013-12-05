@@ -26,9 +26,9 @@ public class Environment extends Component {
 	public Double eLSpeed = 0.0;
 	public Double eFFPos = 0.0;
 	public Double eFFSpeed = 0.0; 
-	public Double eHPos = 600.0;
+	public Double eHPos = 700.0;
 	public Double eHSpeed = 0.0; 
-	public Double eH2Pos = 800.0;
+	public Double eH2Pos = 1400.0;
 	public Double eH2Speed = 0.0; 
 	public Double eLastTime = 0.0;
 
