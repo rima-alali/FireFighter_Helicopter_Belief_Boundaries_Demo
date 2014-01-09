@@ -1,4 +1,4 @@
-package demo;
+package demo.updated;
 
 import cz.cuni.mff.d3s.deeco.annotations.KnowledgeExchange;
 import cz.cuni.mff.d3s.deeco.annotations.Membership;

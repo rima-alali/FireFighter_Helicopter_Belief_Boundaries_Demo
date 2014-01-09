@@ -1,4 +1,4 @@
-package demo;
+package demo.updated;
 
 
 import cz.cuni.mff.d3s.deeco.annotations.KnowledgeExchange;
@@ -11,7 +11,7 @@ import cz.cuni.mff.d3s.deeco.knowledge.OutWrapper;
 
 
 
-public class OffloadHelicopterEnvEnsemble extends Ensemble {
+public class Helicopter1EnvEnsemble extends Ensemble {
 
 	@Membership
 	public static boolean membership(
@@ -19,7 +19,7 @@ public class OffloadHelicopterEnvEnsemble extends Ensemble {
 			@In("coord.hSpeed") Double hSpeed,
 			@In("coord.hGas") Double hGas,
 			@In("coord.hBrake") Double hBrake,
-			@In("coord.hOrder") Boolean hOrder,
+			@In("coord.hHFFConnected") Boolean hHFFConnected,
 				
 			@In("member.eHGas") Double eHGas,
 			@In("member.eHBrake") Double eHBrake,

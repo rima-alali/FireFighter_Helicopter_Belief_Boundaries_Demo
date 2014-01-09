@@ -1,7 +1,6 @@
-package demo;
+package demo.updated;
 
 
-import cz.cuni.mff.d3s.deeco.annotations.InOut;
 import cz.cuni.mff.d3s.deeco.annotations.KnowledgeExchange;
 import cz.cuni.mff.d3s.deeco.annotations.Membership;
 import cz.cuni.mff.d3s.deeco.annotations.In;
@@ -12,18 +11,17 @@ import cz.cuni.mff.d3s.deeco.knowledge.OutWrapper;
 
 
 
-public class RescueHelicopterEnvEnsemble extends Ensemble {
+public class Helicopter2EnvEnsemble extends Ensemble {
 
 	@Membership
 	public static boolean membership(
-			@InOut("coord.hPos") OutWrapper<Double> hPos,
+			@In("coord.hPos") Double hPos,
 			@In("coord.hSpeed") Double hSpeed,
 			@In("coord.hGas") Double hGas,
 			@In("coord.hBrake") Double hBrake,
 			@In("coord.hCreationTime") Double hCreationTime,
-			@In("coord.hMoveByOrder") Boolean hMoveByOrder,
+			@In("coord.hHSearch") Boolean hHSearch,
 					
-		
 			@In("member.eH2Gas") Double eH2Gas,
 			@In("member.eH2Brake") Double eH2Brake,
 			@In("member.eH2Pos") Double eH2Pos,

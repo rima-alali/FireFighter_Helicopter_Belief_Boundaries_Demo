@@ -1,4 +1,4 @@
-package demo;
+package demo.updated;
 
  
 import java.util.Arrays;
@@ -19,15 +19,15 @@ public class Execute {
 		Leader.class,
 		FireFighter.class,
 		Environment.class,
-		OffloadHelicopter.class,
-		RescueHelicopter.class
+		Helicopter1.class,
+		Helicopter2.class
 		});
 		
 		List<Class<?>> ensembles = Arrays.asList(new Class<?>[] {
 		LeaderEnvEnsemble.class,
 		FireFighterEnvEnsemble.class,
-		OffloadHelicopterEnvEnsemble.class,
-		RescueHelicopterEnvEnsemble.class,
+		Helicopter1EnvEnsemble.class,
+		Helicopter2EnvEnsemble.class,
 		FireFighterLeaderEnsemble.class,
 		FireFighterHelicopterEnsemble.class,
 		HelicopterLeaderEnsemble.class,
