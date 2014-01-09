@@ -1,4 +1,4 @@
-package demo.updated;
+package demo;
 
 import cz.cuni.mff.d3s.deeco.annotations.In;
 import cz.cuni.mff.d3s.deeco.annotations.KnowledgeExchange;
@@ -15,7 +15,7 @@ public class FireFighterHelicopterEnsemble extends Ensemble {
 			@In("coord.ffPos") Double ffPos,
 			@In("coord.ffSpeed") Double ffSpeed,
 			@In("coord.ffCreationTime") Double ffCreationTime,
-			@In("coord.ffLastCommunication") Double ffLastConn,
+			@In("coord.ffLastCommunication") Double ffLastCommunication,
 
 			@In("member.hPos") Double hPos,
 			@In("member.hRangeDistance") Double hRangeDistance,
@@ -25,23 +25,23 @@ public class FireFighterHelicopterEnsemble extends Ensemble {
 			@In("member.hFFCreationTime") Double hFFCreationTime) {
 
 		double currentTime = (double) System.nanoTime() / 1000000000;
-		boolean conn = hFFConnected == null ? false : hFFConnected;
-		double vffLastConn = ffLastConn == null ? 0.0 : ffLastConn;
-
-		// ------------------------------------------------------------------------------------
-		boolean inCommunicationRange = (ffPos < 1000 ||(ffPos > 1200 && ffPos < 1600)); //the ranges of communication with two helicopters
-		boolean isDelayed = (currentTime - vffLastConn) > 1; // delay
 		double dist = (Math.abs(hPos - ffPos));
-		boolean inRange = dist < 2*hRangeDistance;
-		// ------------------------------------------------------------------------------------
-		if (inRange && inCommunicationRange && !conn && isDelayed && vffLastConn != 0.0) {
-			System.err.println("###delay :" + (currentTime - vffLastConn)+"  helicopter at pos: " + hPos + "  was asked to connect firefighter pos: "+ffPos+" and its belief is :"+hFFPos+"  . current time = "+ currentTime + "     ffLastCommunication : "+ vffLastConn);
+		boolean conn = hFFConnected == null ? false : hFFConnected;
+		double vffLastCommunication = ffLastCommunication == null ? 0.0 : ffLastCommunication;
+
+		//											delay 						---------							    the ranges of communication with two helicopters
+		if (dist < 2*hRangeDistance && (currentTime - vffLastCommunication) > 1 && vffLastCommunication != 0.0 && !conn && (ffPos < 1000 ||(ffPos > 1200 && ffPos < 1600))) {
+			System.err.println("###delay :" + (currentTime - vffLastCommunication)
+					+ "  helicopter at pos: " + hPos + "  was asked to connect firefighter pos: "+ffPos+" and its belief is :"+hFFPos
+					+"  . current time = "+ currentTime + "     ffLastCommunication : "+ vffLastCommunication);
 			return true;
-		} else if (inRange && inCommunicationRange && conn){
+		} else if (dist < 2*hRangeDistance && conn && (ffPos < 1000 ||(ffPos > 1200 && ffPos < 1600))){
 			System.err.println("Helicopter at Pos : "+hPos+" connected to firefighter :"+ffPos);
 			return true;
 		}
+		
 		return false;
+
 	}
 
 	@KnowledgeExchange
@@ -50,7 +50,7 @@ public class FireFighterHelicopterEnsemble extends Ensemble {
 			@In("coord.ffPos") Double ffPos,
 			@In("coord.ffSpeed") Double ffSpeed,
 			@In("coord.ffCreationTime") Double ffCreationTime,
-			@Out("coord.ffLastCommunication") OutWrapper<Double> ffLastConn,
+			@Out("coord.ffLastCommunication") OutWrapper<Double> ffLastCommunication,
 
 			@Out("member.hFFPos") OutWrapper<Double> hFFPos,
 			@Out("member.hFFSpeed") OutWrapper<Double> hFFSpeed,
@@ -61,6 +61,7 @@ public class FireFighterHelicopterEnsemble extends Ensemble {
 		hFFSpeed.value = ffSpeed;
 		hFFCreationTime.value = ffCreationTime;
 		hFFConnected.value = true;
-		ffLastConn.value = ffCreationTime;
+		ffLastCommunication.value = ffCreationTime;
+		
 	}
 }

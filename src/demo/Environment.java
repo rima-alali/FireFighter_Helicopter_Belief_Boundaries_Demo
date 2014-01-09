@@ -1,4 +1,4 @@
-package demo.updated;
+package demo;
 
 
 import cz.cuni.mff.d3s.deeco.annotations.In;
